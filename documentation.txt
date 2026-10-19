@@ -1,0 +1,316 @@
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Project Title : Inverted Search
+---------------------------------------------------------------------Inverted Search----------------------------------------------------------
+Project Title : Inverted Search
+Project Info  :
+ An inverted index is an index data structure storing a mapping from content, such as words or
+numbers, to its locations in a database file, or in a document or a set of documents. The purpose of
+an inverted index is to allow fast full text searches, at the cost of increased processing when a
+document is added to the database. The inverted file may be the database file itself, rather than its
+index. It is the most popular data structure used in document retrieval systems, used on a large
+scale for example in search engines.
+
+Implementing this search program mainly consists two important functions.
+1. Indexing
+2. Querying.
+
+By Indexing, we are creating a database file which contains the index of all words. So this can be
+termed as Database Creation also. All the files whose index are to be created are selected and
+inputed to this function. All the files are parsed and words are separated and indexed. They are
+arranged in sorted order. For this a sorted Linked List or Hashing is used which will store the words
+and the related file details. The index thus created is then stored in the file as database. This file is
+later used in Querying. While the files are removed or added this index file is updated.
+
+Searching:
+Once the Indexing is over we have the Querying or Searching. The text to be searched is inputed
+which is parsed into words and those words are searched in the index file. To avoid the overhead of
+reading the file again, the file is converted back to a linkedList or hashing program, in which the
+words are searched. The information about the files which contain the words are collected. The ones
+with more matches are filtered and produced as the result.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+Input files and data present in files:
+
+
+Sample input  : cat file1.txt
+Sample output : Hi hello how are you ? Hi Hello Hi Hi Hi Hi Hello
+
+Sample input  : cat file2.txt
+Sample output : Hi Hello this is inverted search project.
+
+Sample input  : cat file3.txt
+Sample output : i am good hi hello hi you know?
+
+Sample input  : cat file4.txt
+Sample output : Hi you will die as a hero.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Sample input and output :
+
+Sample input for first step without updation  : ./a.out file1.txt file2.txt
+Sample output : 
+
+Successful: inserting file name : file1.txt into file linked list
+Successful: inserting file name : file2.txt into file linked list
+file1.txt -> file2.txt -> NULL
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 1
+INFO : Creation of database for file file1.txt is Successful
+INFO : Creation of database for file file2.txt is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 2
+|index| |word|          file count      file/s file     file name       word count
+[ 0]    [are     ]        1             files/s: File:  file1.txt         1          
+[ 7]    [Hi      ]        2             files/s: File:  file1.txt         6          file2.txt    2          
+[ 7]    [hello   ]        1             files/s: File:  file1.txt         1          
+[ 7]    [how     ]        1             files/s: File:  file1.txt         1          
+[ 7]    [Hello   ]        2             files/s: File:  file1.txt         2          file2.txt    2          
+[ 8]    [is      ]        1             files/s: File:  file2.txt         2          
+[ 8]    [inverted]        1             files/s: File:  file2.txt         2          
+[15]    [project.]        1             files/s: File:  file2.txt         2          
+[18]    [search  ]        1             files/s: File:  file2.txt         2          
+[19]    [this    ]        1             files/s: File:  file2.txt         2          
+[24]    [you     ]        1             files/s: File:  file1.txt         1          
+[26]    [?       ]        1             files/s: File:  file1.txt         1          
+INFO : Display Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 4
+Enter word to search : Hi
+Word Hi is present in 2 file/s
+In file: file1.txt 6 time/s
+In file: file2.txt 2 time/s
+
+INFO : Search Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 5
+Enter file name : backup.txt
+INFO : Save Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 6
+
+
+Sample input for second step with updation  : ./a.out file1.txt file2.txt file3.txt file4.txt
+Sample output :
+Successful: inserting file name : file1.txt into file linked list
+Successful: inserting file name : file2.txt into file linked list
+Successful: inserting file name : file3.txt into file linked list
+Successful: inserting file name : file4.txt into file linked list
+file1.txt -> file2.txt -> file3.txt -> file4.txt -> NULL
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 3
+Enter file name : backup.txt
+file3.txt -> file4.txt -> NULL
+INFO : Update Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 2
+|index| |word|          file count      file/s file     file name       word count
+[ 0]    [are     ]        1             files/s: File:  file1.txt         1          
+[ 7]    [Hi      ]        2             files/s: File:  file1.txt         6          file2.txt    2          
+[ 7]    [hello   ]        1             files/s: File:  file1.txt         1          
+[ 7]    [how     ]        1             files/s: File:  file1.txt         1          
+[ 7]    [Hello   ]        2             files/s: File:  file1.txt         2          file2.txt    2          
+[ 8]    [is      ]        1             files/s: File:  file2.txt         2          
+[ 8]    [inverted]        1             files/s: File:  file2.txt         2          
+[15]    [project.]        1             files/s: File:  file2.txt         2          
+[18]    [search  ]        1             files/s: File:  file2.txt         2          
+[19]    [this    ]        1             files/s: File:  file2.txt         2          
+[24]    [you     ]        1             files/s: File:  file1.txt         1          
+[26]    [?       ]        1             files/s: File:  file1.txt         1          
+INFO : Display Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 1
+INFO : Creation of database for file file3.txt is Successful
+INFO : Creation of database for file file4.txt is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 2
+|index| |word|          file count      file/s file     file name       word count
+[ 0]    [are     ]        1             files/s: File:  file1.txt         1          
+[ 0]    [am      ]        1             files/s: File:  file3.txt         1          
+[ 0]    [as      ]        1             files/s: File:  file4.txt         2          
+[ 0]    [a       ]        1             files/s: File:  file4.txt         2          
+[ 3]    [die     ]        1             files/s: File:  file4.txt         2          
+[ 6]    [good    ]        1             files/s: File:  file3.txt         1          
+[ 7]    [Hi      ]        3             files/s: File:  file1.txt         6          file2.txt    2          file4.txt    2          
+[ 7]    [hello   ]        2             files/s: File:  file1.txt         1          file3.txt    1          
+[ 7]    [how     ]        1             files/s: File:  file1.txt         1          
+[ 7]    [Hello   ]        2             files/s: File:  file1.txt         2          file2.txt    2          
+[ 7]    [hi      ]        1             files/s: File:  file3.txt         2          
+[ 7]    [hero.   ]        1             files/s: File:  file4.txt         2          
+[ 8]    [is      ]        1             files/s: File:  file2.txt         2          
+[ 8]    [inverted]        1             files/s: File:  file2.txt         2          
+[ 8]    [i       ]        1             files/s: File:  file3.txt         1          
+[10]    [know?   ]        1             files/s: File:  file3.txt         1          
+[15]    [project.]        1             files/s: File:  file2.txt         2          
+[18]    [search  ]        1             files/s: File:  file2.txt         2          
+[19]    [this    ]        1             files/s: File:  file2.txt         2          
+[22]    [will    ]        1             files/s: File:  file4.txt         2          
+[24]    [you     ]        3             files/s: File:  file1.txt         1          file3.txt    1          file4.txt    2          
+[26]    [?       ]        1             files/s: File:  file1.txt         1          
+INFO : Display Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 5
+Enter file name : backup.txt
+INFO : Save Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 4
+Enter word to search : Hi
+Word Hi is present in 3 file/s
+In file: file1.txt 6 time/s
+In file: file2.txt 2 time/s
+In file: file4.txt 2 time/s
+
+INFO : Search Database is Successful
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 6
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Error Handling : 
+
+1.  Sample input : ./a.out
+    Sample output : INFO : Invalid Arguments
+
+
+2. Sample input : ./a.out file1.txt file2.txt main.c file3.txt file4.xt
+   Sample output : 
+
+Successful: inserting file name : file1.txt into file linked list
+Successful: inserting file name : file2.txt into file linked list
+INFO : main.c is not '.txt' file and failed to insert file name main.c
+Successful: inserting file name : file3.txt into file linked list
+INFO : file4.xt is not '.txt' file and failed to insert file name file4.xt
+file1.txt -> file2.txt -> file3.txt -> NULL
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 6
+
+3. Sample input : ./a.out file1.txt file2.txt main.c file2.txt file1.txt
+   Sample output:  
+Successful: inserting file name : file1.txt into file linked list
+Successful: inserting file name : file2.txt into file linked list
+INFO : main.c is not '.txt' file and failed to insert file name main.c
+ERROR : DUPLICATE FILE  file2.txt
+ERROR : DUPLICATE FILE  file1.txt
+file1.txt -> file2.txt -> NULL
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 6
+
+4. Sample input : ./a.out file
+   Sample output : 
+INFO : file is not '.txt' file and failed to insert file name file
+INFO : List is empty
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 6
+
+5. Sample input : ./a.out file123
+   Sample output:
+INFO : file123 is not '.txt' file and failed to insert file name file123
+INFO : List is empty
+Select your choice among following options:
+1. Create Database
+2. Display Database
+3. Update Database
+4. Search
+5. Save Database
+6. Exit
+Enter your choice : 6
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
